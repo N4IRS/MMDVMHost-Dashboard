@@ -2,7 +2,7 @@
 
 function getMMDVMHostVersion() {
    // returns creation-time or version of MMDVMHost as version-number
-   $filename = MMDVMHOSTPATH."/MMDVMHost";
+   $filename = MMDVMHOSTPATH."/MMDVM_Bridge";
    exec($filename." -v 2>&1", $output);
    if (!startsWith(substr($output[0],18,8),"20")) {
       showLapTime("getMMDVMHostVersion");
@@ -19,7 +19,7 @@ function getMMDVMHostVersion() {
 
 function getMMDVMHostFileVersion() {
    // returns creation-time of MMDVMHost as version-number
-   $filename = MMDVMHOSTPATH."/MMDVMHost";
+   $filename = MMDVMHOSTPATH."/MMDVM_Bridge";
    if (file_exists($filename)) {
       showLapTime("getMMDVMHostFileVersion");
       return date("d M Y", filectime($filename));
@@ -71,7 +71,7 @@ function getFirmwareVersion() {
    } else {
       $fp = fopen('/tmp/MMDVMFirmware.txt', 'r');
       $contents = fread($fp, filesize("/tmp/MMDVMFirmware.txt"));
-      $firmware = $contents;
+      $firmware = "Bridge";
    }
    echo $firmware;
 }
@@ -210,10 +210,10 @@ function showMode($mode, $mmdvmconfigs) {
             }
             break;
          default:
-            if (isProcessRunning("MMDVMHost")) {
+            if (isProcessRunning("MMDVM_Bridge")) {
                echo "badge-success";
             } else {
-               echo "badge-danger\" title=\""._("MMDVMHost is down!");
+               echo "badge-danger\" title=\""._("MMDVM_Bridge is down!");
             }
       }
    } else {
@@ -955,7 +955,7 @@ function decodeAlias($logLine) {
 function getGitVersion(){
 	if (file_exists(".git")) {
 		exec("git rev-parse --short HEAD", $output);
-		return 'GitID #<a href="https://github.com/dg9vh/MMDVMHost-Dashboard/commit/'.$output[0].'" target="_blank">'.$output[0].'</a>';
+		return 'GitID #<a href="https://github.com/N4IRS/MMDVMHost-Dashboard/commit/'.$output[0].'" target="_blank">'.$output[0].'</a>';
 	} else {
 		return 'GitID unknown';
 	}
