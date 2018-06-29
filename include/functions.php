@@ -69,8 +69,8 @@ function getFirmwareVersion() {
       fwrite($fp, $firmware);
       fclose($fp);
    } else {
-      $fp = fopen('/tmp/MMDVMFirmware.txt', 'r');
-      $contents = fread($fp, filesize("/tmp/MMDVMFirmware.txt"));
+      // $fp = fopen('/tmp/MMDVMFirmware.txt', 'r');
+      // $contents = fread($fp, filesize("/tmp/MMDVMFirmware.txt"));
       $firmware = "Bridge";
    }
    echo $firmware;
@@ -210,9 +210,9 @@ function showMode($mode, $mmdvmconfigs) {
             }
             break;
          case "P25 Network":
-            if (getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "localhost" || getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "127.0.0.1") {
+	    if (getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "localhost" || getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "127.0.0.1") {
                if (isProcessRunning("P25Gateway")) {
-                  echo "badge-sucsess";
+                  echo "badge-success";
                } else {
                   echo "badge-danger\" title=\""._("P25Gateway is down!");
                }
