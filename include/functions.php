@@ -212,7 +212,7 @@ function showMode($mode, $mmdvmconfigs) {
          case "P25 Network":
             if (getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "localhost" || getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "127.0.0.1") {
                if (isProcessRunning("P25Gateway")) {
-                  echo "badge-sucsess;
+                  echo "badge-sucsess";
                } else {
                   echo "badge-danger\" title=\""._("P25Gateway is down!");
                }
