@@ -209,6 +209,28 @@ function showMode($mode, $mmdvmconfigs) {
                echo "badge-default\" title=\""._("Remote gateway configured - not checked!");
             }
             break;
+         case "P25 Network":
+            if (getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "localhost" || getConfigItem("P25 Network", "GatewayAddress", $mmdvmconfigs) == "127.0.0.1") {
+               if (isProcessRunning("P25Gateway")) {
+                  echo "badge-sucsess;
+               } else {
+                  echo "badge-danger\" title=\""._("P25Gateway is down!");
+               }
+            } else {
+               echo "badge-default\" title=\""._("Remote gateway configured - not checked!");
+            }
+            break;
+         case "NXDN Network":
+            if (getConfigItem("NXDN Network", "GatewayAddress", $mmdvmconfigs) == "localhost" || getConfigItem("NXDN Network", "GatewayAddress", $mmdvmconfigs) == "127.0.0.1") {
+               if (isProcessRunning("NXDNGateway")) {
+                  echo "badge-success";
+               } else {
+                  echo "badge-danger\" title=\""._("NXDNGateway is down!");
+               }
+            } else {
+               echo "badge-default\" title=\""._("Remote gateway configured - not checked!");
+            }
+            break;
          default:
             if (isProcessRunning("MMDVM_Bridge")) {
                echo "badge-success";
@@ -276,7 +298,7 @@ function getHeardList($logLines, $onlyLast) {
    $ysfber         = "";
    $ysfrssi        = "";
    $alias          = "";
-   
+
    foreach ($logLines as $logLine) {
       $duration   = "";
       $loss       = "";
@@ -467,14 +489,14 @@ function getHeardList($logLines, $onlyLast) {
          if(!$id)
              $id="";
       }
-      
-      
+
+
       $target = substr($logLine, $topos + 3);
       $target = preg_replace('/\s/', '&nbsp;', $target);
       if (defined("RESOLVETGS")) {
          $target = $target." ".getTGName($target);
       }
-      
+
       $source = "RF";
       if (strpos($logLine,"network") > 0 ) {
          $source = "Net";
@@ -751,7 +773,7 @@ function getActualLink($logLines, $mode) {
 // 01234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901
 //I: 2018-06-04 11:04:22.190 The ID of this repeater is 50735
 //M: 2018-06-04 11:04:22.202 No connection startup
-//M: 2018-06-04 11:04:24.005 Linked to IT C4FM Piemonte		   
+//M: 2018-06-04 11:04:24.005 Linked to IT C4FM Piemonte
 
 
          if (isProcessRunning("YSFGateway")) {
