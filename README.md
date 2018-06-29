@@ -10,7 +10,8 @@ system temperature, cpu-load ... and it shows a last-heard-list.
 It relies on MMDVM_Bridge 
 
 
-This is a fork ot the MMDVMHost-Dashboard that has been modified to work with MMDVM_Bridge
+This is a fork ot the MMDVMHost-Dashboard that has been modified to work with MMDVM_Bridge.
+This is a work in progress and we modify the screen for better MMDVM_Bridge visibility.
 Thanks to Kim DG9VH for a great dashboard!
 
 Based on G4KLX code, mod by EA4GKQ
